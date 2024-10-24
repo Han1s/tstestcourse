@@ -1,6 +1,10 @@
 export class StringUtils {
   public toUpperCase(arg: string) {
-    return toUpperCase(arg)
+    if (!arg) {
+      throw new Error("Invalid argument!");
+    }
+
+    return toUpperCase(arg);
   }
 }
 
@@ -14,7 +18,7 @@ export type stringInfo = {
   characters: string[];
   length: number;
   extraInfo: Object | undefined;
-}
+};
 
 export function getStringInfo(arg: string): stringInfo {
   return {
@@ -22,8 +26,6 @@ export function getStringInfo(arg: string): stringInfo {
     upperCase: arg.toUpperCase(),
     characters: Array.from(arg),
     length: arg.length,
-    extraInfo: {
-
-    }
-  }
+    extraInfo: {},
+  };
 }

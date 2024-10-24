@@ -13,15 +13,37 @@ describe("Utils test suite", () => {
     expect(actual).toBe(expected);
   });
 
-  it.only("should return info for valid string", () => {
-    const actual = getStringInfo("My-String");
+  describe("ToUpperCase examples", () => {
+    it.each([
+      { input: "abc", expected: "ABC" },
+      { input: "My-String", expected: "MY-STRING" },
+      { input: "def", expected: "DEF" },
+    ])("$input toUpperCase should be $expected", ({ input, expected }) => {
+      const actual = toUpperCase(input);
+      expect(actual).toBe(expected);
+    });
+  });
 
-    expect(actual.lowerCase).toBe("my-string");
-    expect(actual.extraInfo).toEqual({});
-
-    expect(actual.characters).toHaveLength(9);
-    expect(actual.characters).toContain('M');
-
-    expect(actual.extraInfo).not.toBe(undefined);
+  describe("getStringInfo for arg My-String should", () => {
+    test("return right length", () => {
+      const actual = getStringInfo("My-String");
+      expect(actual.characters).toHaveLength(9);
+    });
+    test("return right lower case", () => {
+      const actual = getStringInfo("My-String");
+      expect(actual.lowerCase).toBe("my-string");
+    });
+    test("return right upper case", () => {
+      const actual = getStringInfo("My-String");
+      expect(actual.upperCase).toBe("MY-STRING");
+    });
+    test("return right characters", () => {
+      const actual = getStringInfo("My-String");
+      expect(actual.characters).toContain("M");
+    });
+    test("return defined extra info", () => {
+      const actual = getStringInfo("My-String");
+      expect(actual.extraInfo).not.toBe(undefined);
+    });
   });
 });

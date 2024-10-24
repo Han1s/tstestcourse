@@ -1,3 +1,9 @@
+export class StringUtils {
+  public toUpperCase(arg: string) {
+    return toUpperCase(arg)
+  }
+}
+
 export function toUpperCase(arg: string) {
   return arg.toUpperCase();
 }
@@ -17,7 +23,7 @@ export function getStringInfo(arg: string): stringInfo {
     characters: Array.from(arg),
     length: arg.length,
     extraInfo: {
-      
+
     }
   }
 }

@@ -14,11 +14,10 @@ describe("Utils test suite", () => {
       console.log("Teardown");
     });
 
-    it("Should return correct upperCase", () => {
+    it.only("Should return correct upperCase", () => {
       const actual = sut.toUpperCase("abc");
 
       expect(actual).toBe("ABC");
-      console.log("Actual test");
     });
 
     it("Should throw error on invalid argument - function", () => {

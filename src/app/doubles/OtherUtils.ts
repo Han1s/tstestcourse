@@ -8,4 +8,15 @@ export type stringInfo = {
 
 export const calculateComplexity = (stringInfo: stringInfo) => {
   return Object.keys(stringInfo.extraInfo).length * stringInfo.length;
-}
+};
+
+export const toUpperCaseWithCb = (arg: string, callback: Function) => {
+  if (!arg) {
+    callback("Invalid argument!");
+    return;
+  }
+
+  callback(`called function with ${arg}`);
+
+  return arg.toUpperCase();
+};

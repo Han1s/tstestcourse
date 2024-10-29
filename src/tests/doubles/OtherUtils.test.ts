@@ -1,7 +1,38 @@
-import { toUpperCaseWithCb } from "./../../app/doubles/OtherUtils";
+import {
+  OtherStringUtils,
+  toUpperCaseWithCb,
+} from "../../app/doubles/OtherUtils";
 import { calculateComplexity } from "../../app/doubles/OtherUtils";
 
 describe("OtherUtils test suite", () => {
+  describe("OtherStringUtils tests with spies", () => {
+    let sut: OtherStringUtils;
+
+    beforeEach(() => {
+      sut = new OtherStringUtils();
+    });
+
+    test("Use a spy to track calls", () => {
+      const toUpperCaseSpy = jest.spyOn(sut, "toUpperCase");
+      sut.toUpperCase("asa");
+      expect(toUpperCaseSpy).toHaveBeenCalledWith("asa");
+    });
+
+    test("Use a spy to track calls to other module", () => {
+      const consoleLogSpy = jest.spyOn(console, "log");
+      sut.logString("abc");
+      expect(consoleLogSpy).toHaveBeenCalledWith("abc");
+    });
+
+    test("Use a spy to reoplace the implementation of the method", () => {
+      jest.spyOn(sut, "callExternalService").mockImplementation(() => {
+        console.log("calling mock implementation");
+      }); // work around private methods
+
+      sut.callExternalService();
+    });
+  });
+
   // 1st way to use mocks - jest
   describe("Tracking callbacks with jest mocks", () => {
     const callbackMock = jest.fn();

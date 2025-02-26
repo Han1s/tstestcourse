@@ -11,7 +11,7 @@ jest.mock("uuid", () => ({
 
 import * as OtherUtils from "../../app/doubles/OtherUtils";
 
-describe.only("module tests", () => {
+describe("module tests", () => {
   test("calculate complexity", () => {
     const result = OtherUtils.calculateComplexity({} as any);
     expect(result).toBe(10);

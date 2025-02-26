@@ -13,10 +13,9 @@ describe("DataBase test suite", () => {
   const fakeId = "1234";
   const someObject = {
     id: "",
-    name: "someName1",
+    name: "someName",
     color: "blue",
   };
-
   const someObject2 = {
     id: "",
     name: "someName2",
@@ -63,6 +62,15 @@ describe("DataBase test suite", () => {
     const actualColor = object.color;
 
     expect(actualColor).toBe(expectedColor);
+  });
+
+  it("should delete object", async () => {
+    const id = await sut.insert(someObject);
+    await sut.delete(id);
+
+    const actual = await sut.getBy("id", id);
+
+    expect(actual).toBeUndefined();
   });
 
   it("should get all elements", async () => {
